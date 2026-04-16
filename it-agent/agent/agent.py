@@ -1,6 +1,4 @@
-"""
-IT Support AI Agent - Fixed Version
-"""
+
 import os, base64, json, time, sys, re
 from groq import Groq
 from playwright.sync_api import sync_playwright
