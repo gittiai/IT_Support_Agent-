@@ -1,7 +1,4 @@
-"""
-Interactive chat interface for the IT Support Agent
-Run this to chat with the agent interactively
-"""
+
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
