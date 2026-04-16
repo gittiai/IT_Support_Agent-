@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h2>Dashboard</h2>
+    <p style="color:#666; margin-bottom:24px;">Welcome to the IT Admin Panel. Manage users, reset passwords, and handle IT requests.</p>
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-bottom:24px;">
+        <div style="background:#ede9fe; border-radius:10px; padding:20px; text-align:center;">
+            <div style="font-size:32px; font-weight:700; color:#4f46e5;">{{ users|length }}</div>
+            <div style="color:#666; font-size:13px; margin-top:4px;">Total Users</div>
+        </div>
+        <div style="background:#dcfce7; border-radius:10px; padding:20px; text-align:center;">
+            <div style="font-size:32px; font-weight:700; color:#16a34a;">{{ users.values()|selectattr('active')|list|length }}</div>
+            <div style="color:#666; font-size:13px; margin-top:4px;">Active Users</div>
+        </div>
+        <div style="background:#fee2e2; border-radius:10px; padding:20px; text-align:center;">
+            <div style="font-size:32px; font-weight:700; color:#dc2626;">{{ users.values()|rejectattr('active')|list|length }}</div>
+            <div style="color:#666; font-size:13px; margin-top:4px;">Inactive Users</div>
+        </div>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px;">
+        <a href="/reset-password" style="text-decoration:none;">
+            <div style="border:2px solid #e2e8f0; border-radius:10px; padding:20px; text-align:center; transition:all 0.2s;" onmouseover="this.style.borderColor='#4f46e5'" onmouseout="this.style.borderColor='#e2e8f0'">
+                <div style="font-size:28px;">🔑</div>
+                <div style="font-weight:600; margin-top:8px; color:#1a1a2e;">Reset Password</div>
+            </div>
+        </a>
+        <a href="/create-user" style="text-decoration:none;">
+            <div style="border:2px solid #e2e8f0; border-radius:10px; padding:20px; text-align:center;" onmouseover="this.style.borderColor='#4f46e5'" onmouseout="this.style.borderColor='#e2e8f0'">
+                <div style="font-size:28px;">➕</div>
+                <div style="font-weight:600; margin-top:8px; color:#1a1a2e;">Create User</div>
+            </div>
+        </a>
+        <a href="/manage-users" style="text-decoration:none;">
+            <div style="border:2px solid #e2e8f0; border-radius:10px; padding:20px; text-align:center;" onmouseover="this.style.borderColor='#4f46e5'" onmouseout="this.style.borderColor='#e2e8f0'">
+                <div style="font-size:28px;">👥</div>
+                <div style="font-weight:600; margin-top:8px; color:#1a1a2e;">Manage Users</div>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h2>👥 Manage Users</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>License</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for email, user in users.items() %}
+            <tr>
+                <td>{{ email }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.license }}</td>
+                <td><span class="badge badge-{{ 'active' if user.active else 'inactive' }}">{{ 'Active' if user.active else 'Inactive' }}</span></td>
+                <td style="display:flex; gap:6px; flex-wrap:wrap;">
+                    {% if user.active %}
+                    <form method="POST"><input type="hidden" name="email" value="{{ email }}"><input type="hidden" name="action" value="deactivate"><button class="btn btn-danger btn-sm">Deactivate</button></form>
+                    {% else %}
+                    <form method="POST"><input type="hidden" name="email" value="{{ email }}"><input type="hidden" name="action" value="activate"><button class="btn btn-success btn-sm">Activate</button></form>
+                    {% endif %}
+                    <form method="POST">
+                        <input type="hidden" name="email" value="{{ email }}">
+                        <input type="hidden" name="action" value="assign_license">
+                        <select name="license" style="padding:4px 8px; font-size:12px; border-radius:6px; border:1px solid #ddd;">
+                            <option>Basic</option><option>Pro</option><option>Enterprise</option><option>None</option>
+                        </select>
+                        <button class="btn btn-primary btn-sm" style="margin-left:4px;">Assign</button>
+                    </form>
+                    <form method="POST" onsubmit="return confirm('Delete {{ email }}?')"><input type="hidden" name="email" value="{{ email }}"><input type="hidden" name="action" value="delete"><button class="btn btn-danger btn-sm">Delete</button></form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

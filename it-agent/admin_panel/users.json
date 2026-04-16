@@ -1,0 +1,26 @@
+{
+  "john@company.com": {
+    "name": "John Doe",
+    "role": "Employee",
+    "active": false,
+    "license": "Basic"
+  },
+  "alice@company.com": {
+    "name": "Alice Smith",
+    "role": "Manager",
+    "active": true,
+    "license": "Pro"
+  },
+  "bob@company.com": {
+    "name": "Bob Johnson",
+    "role": "Employee",
+    "active": true,
+    "license": "None"
+  },
+  "sarah@company.com": {
+    "name": "Sarah Connor",
+    "role": "Manager",
+    "active": true,
+    "license": "Pro"
+  }
+}
